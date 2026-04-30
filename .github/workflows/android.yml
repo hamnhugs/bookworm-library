@@ -16,9 +16,10 @@ jobs:
         uses: android-actions/setup-android@v3
         with:
           cmdline-tools-version: 11076708
-      - name: Build APK (with auto-download/accept)
+      - name: Build APK (with auto-accepted licenses)
         run: |
-          mkdir -p android/app/libs
+          mkdir -p ~/.android
+          echo "count=0" > ~/.android/repositories.cfg
           yes | sdkmanager --licenses
           ./gradlew assembleDebug
         working-directory: android
