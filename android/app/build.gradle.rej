@@ -1,0 +1,8 @@
+--- /dev/null
++++ /dev/null
+@@ -34,4 +34,4 @@
+ android {
+     compileSdkVersion 29
+-    defaultConfig { ... }
++    defaultConfig { minSdkVersion 21 }
+ }
