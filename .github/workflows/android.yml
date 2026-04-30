@@ -16,20 +16,10 @@ jobs:
         uses: android-actions/setup-android@v3
         with:
           cmdline-tools-version: 11076708
-          packages: >-
-            platform-tools
-            platforms;android-34
-            build-tools;34.0.0
-        env:
-          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-      - name: Accept Licenses
+      - name: Build APK (with auto-download/accept)
         run: |
-          mkdir -p "$ANDROID_HOME/licenses"
-          echo "8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
-          echo "d56f5187473751e0f942e6f54924d5570087754f" >> "$ANDROID_HOME/licenses/android-sdk-license"
-          echo "24333f8a63b6825ea9c5ffe14f16fb56847a9840" >> "$ANDROID_HOME/licenses/android-sdk-license"
-          echo "84831b94096d6a969e02bdd003f905435905d41f" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
-      - name: Build APK
-        run: ./gradlew assembleDebug
+          mkdir -p android/app/libs
+          yes | sdkmanager --licenses
+          ./gradlew assembleDebug
         working-directory: android
 EOF
