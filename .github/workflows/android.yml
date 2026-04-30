@@ -10,10 +10,14 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
+        env:
+          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
         with:
           cmdline-tools-version: 11076708
+        env:
+          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
       - name: Accept Licenses
         run: yes | sdkmanager --licenses
       - name: Build APK
